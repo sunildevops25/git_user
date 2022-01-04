@@ -3,5 +3,3 @@ myusers:
     group: guests
   - name: manish
     group: manager
-  - name: bob
-    group: developer
