@@ -1,7 +1,20 @@
 - hosts: all
   become: true
+  vars_files:
+         - user.yml
   tasks:
     - name: group add  
       group: 
-        name: ibm
+        name: "{{ item }}"
         state: present
+      with_items:
+            - guests
+            - manager
+            - developer
+
+    - name: add user
+      user:
+           name: "{{ item.name }}" 
+           group: "{{ item.group }}"
+      with_items:
+       - "{{ myusers }}"
